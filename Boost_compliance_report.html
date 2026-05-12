@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>社媒 Boost 合规与增长执行标准报告 2026 | ZERO Markets</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0f172a;
+    --bg-card: rgba(15, 23, 50, 0.75);
+    --bg-card-hover: rgba(20, 32, 65, 0.9);
+    --border: rgba(99, 144, 255, 0.15);
+    --border-bright: rgba(99, 144, 255, 0.35);
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-accent: #7dd3fc;
+    --accent-blue: #3b82f6;
+    --accent-cyan: #06b6d4;
+    --red: #ef4444;
+    --red-soft: rgba(239, 68, 68, 0.15);
+    --green: #22c55e;
+    --green-soft: rgba(34, 197, 94, 0.12);
+    --gold: #f59e0b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    font-family: 'Noto Sans SC', 'Space Mono', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Grid noise texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Ambient glow blobs */
+  .glow-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.18;
+  }
+  .glow-blob-1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #1d4ed8, transparent);
+    top: -200px; left: -200px;
+  }
+  .glow-blob-2 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #0e7490, transparent);
+    bottom: 100px; right: -150px;
+  }
+  .glow-blob-3 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, #7c3aed, transparent);
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* Language fade transition */
+  .lang-content {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .lang-content.hidden-lang {
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
+  .lang-wrapper {
+    position: relative;
+  }
+
+  /* Card styles */
+  .glass-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-radius: 12px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  }
+  .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(59, 130, 246, 0.12), 0 0 0 1px rgba(99, 144, 255, 0.25);
+    border-color: var(--border-bright);
+    background: var(--bg-card-hover);
+  }
+
+  /* Phase indicator */
+  .phase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    border: 1px solid;
+  }
+
+  /* Table styles */
+  .compliance-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .compliance-table th {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--text-accent);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-bright);
+  }
+  .compliance-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    vertical-align: top;
+    line-height: 1.6;
+    transition: color 0.2s, background 0.2s;
+  }
+  .compliance-table tr:hover td {
+    background: rgba(59, 130, 246, 0.06);
+    color: var(--text-primary);
+  }
+  .compliance-table tr:last-child td { border-bottom: none; }
+  .compliance-table td:first-child {
+    color: var(--text-primary);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* Risk keyword pills */
+  .risk-pill {
+    display: inline-block;
+    background: var(--red-soft);
+    border: 1px solid rgba(239,68,68,0.3);
+    color: #fca5a5;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    margin: 2px 2px 2px 0;
+  }
+  .alt-pill {
+    display: inline-block;
+    background: var(--green-soft);
+    border: 1px solid rgba(34,197,94,0.25);
+    color: #86efac;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.72rem;
+    margin: 2px 2px 2px 0;
+  }
+
+  /* CPF meter */
+  .cpf-bar {
+    height: 6px;
+    border-radius: 3px;
+    transition: width 0.8s ease;
+  }
+
+  /* Redline item */
+  .redline-item {
+    border-left: 3px solid var(--red);
+    padding-left: 14px;
+    margin-bottom: 16px;
+  }
+  .greenline-item {
+    border-left: 3px solid var(--green);
+    padding-left: 14px;
+    margin-bottom: 16px;
+  }
+
+  /* Scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Stage node */
+  .stage-node {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Lang toggle */
+  .lang-btn {
+    transition: all 0.2s ease;
+    font-family: 'Space Mono', monospace;
+  }
+  .lang-btn.active {
+    background: rgba(59,130,246,0.25);
+    border-color: rgba(99,144,255,0.6);
+    color: #bfdbfe;
+  }
+  .lang-btn:not(.active) {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(99,144,255,0.15);
+    color: var(--text-secondary);
+  }
+  .lang-btn:hover:not(.active) {
+    background: rgba(59,130,246,0.1);
+    border-color: rgba(99,144,255,0.3);
+  }
+
+  /* Header gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, #7dd3fc 0%, #a78bfa 50%, #34d399 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0f172a; }
+  ::-webkit-scrollbar-thumb { background: rgba(59,130,246,0.3); border-radius: 3px; }
+
+  /* Animated divider */
+  .divider-animated {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99,144,255,0.4), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+  }
+  @keyframes shimmer {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  /* Pulse dot */
+  .pulse-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    position: relative;
+  }
+  .pulse-dot::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--green);
+    opacity: 0.3;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.8); opacity: 0; }
+  }
+
+  .font-mono { font-family: 'Space Mono', monospace; }
+  .font-display { font-family: 'Syne', sans-serif; }
+
+  /* Table scroll on mobile */
+  .table-scroll { overflow-x: auto; }
+  .table-scroll::-webkit-scrollbar { height: 4px; }
+</style>
+</head>
+<body>
+
+<div class="glow-blob glow-blob-1"></div>
+<div class="glow-blob glow-blob-2"></div>
+<div class="glow-blob glow-blob-3"></div>
+
+<!-- Top nav bar -->
+<div class="fixed top-0 left-0 right-0 z-50" style="background: rgba(15,23,42,0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(99,144,255,0.1);">
+  <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="pulse-dot"></div>
+      <span class="font-mono text-xs" style="color: var(--text-secondary); letter-spacing: 0.1em;">ZERO MARKETS / 2026 BOOST STANDARDS</span>
+    </div>
+    <!-- Language toggle -->
+    <div class="flex items-center gap-2">
+      <button id="btn-cn" onclick="setLang('cn')" class="lang-btn active text-xs px-3 py-1.5 rounded-md border active:scale-95">中文</button>
+      <button id="btn-en" onclick="setLang('en')" class="lang-btn text-xs px-3 py-1.5 rounded-md border active:scale-95">EN</button>
+    </div>
+  </div>
+</div>
+
+<div class="relative z-10 pt-16">
+<div class="max-w-5xl mx-auto px-4 py-12">
+
+  <!-- ===== HEADER ===== -->
+  <header class="reveal text-center mb-16">
+    <div class="font-mono text-xs mb-4" style="color: var(--text-secondary); letter-spacing: 0.2em;">
+      <span class="lang-cn">INTERNAL EXECUTION STANDARDS · 2026</span>
+      <span class="lang-en hidden">INTERNAL EXECUTION STANDARDS · 2026</span>
+    </div>
+    <h1 class="font-display font-bold mb-4 leading-tight" style="font-size: clamp(1.8rem, 5vw, 3rem);">
+      <span class="lang-cn gradient-text">社媒 Boost 合规与增长<br>执行标准报告</span>
+      <span class="lang-en hidden gradient-text">Social Media Boost Compliance<br>& Growth Execution Standards</span>
+    </h1>
+    <div class="flex items-center justify-center gap-3 mt-6 flex-wrap">
+      <span class="phase-badge text-blue-300" style="border-color: rgba(99,144,255,0.4); background: rgba(59,130,246,0.1);">
+        <span>◈</span>
+        <span class="lang-cn">ZERO Markets</span>
+        <span class="lang-en hidden">ZERO Markets</span>
+      </span>
+      <span class="phase-badge" style="border-color: rgba(239,68,68,0.35); background: var(--red-soft); color: #fca5a5;">
+        <span>⬡</span>
+        <span class="lang-cn">严格保密</span>
+        <span class="lang-en hidden">CONFIDENTIAL</span>
+      </span>
+      <span class="phase-badge" style="border-color: rgba(34,197,94,0.3); background: var(--green-soft); color: #86efac;">
+        <span>▲</span>
+        <span class="lang-cn">2026版</span>
+        <span class="lang-en hidden">2026 Edition</span>
+      </span>
+    </div>
+  </header>
+
+  <!-- ===== EXECUTIVE BACKGROUND ===== -->
+  <section class="reveal mb-10">
+    <div class="glass-card p-6 md:p-8">
+      <div class="flex items-start gap-4">
+        <div class="flex-shrink-0 mt-1">
+          <div class="w-10 h-10 rounded-lg flex items-center justify-center font-mono font-bold text-sm" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #7dd3fc;">BG</div>
+        </div>
+        <div>
+          <h2 class="font-display font-bold text-lg mb-3" style="color: var(--text-accent);">
+            <span class="lang-cn">执行背景</span>
+            <span class="lang-en hidden">Executive Background</span>
+          </h2>
+          <p class="leading-relaxed text-sm lang-cn" style="color: var(--text-secondary);">
+            2026年，Meta 针对金融行业引入了更严苛的 AI 审计算法。系统不仅扫描关键词，还会交叉比对<strong style="color: var(--text-primary);">视觉暗示及落地页一致性</strong>。本标准旨在确保 ZERO Markets 社媒账号在 boost 执行过程中，平衡<strong style="color: var(--green);">"账户安全"</strong>与<strong style="color: var(--text-accent);">"增长效能"</strong>。
+          </p>
+          <p class="leading-relaxed text-sm lang-en hidden" style="color: var(--text-secondary);">
+            In 2026, Meta introduced more stringent AI auditing algorithms specifically for the financial sector. The system now scans not only keywords but also performs cross-referencing between <strong style="color: var(--text-primary);">visual cues and landing page consistency</strong>. These standards are designed to ensure that ZERO Markets' social media accounts balance <strong style="color: var(--green);">"Account Safety"</strong> with <strong style="color: var(--text-accent);">"Growth Efficiency"</strong> during the execution of post boosts.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-animated mb-10"></div>
+
+  <!-- ===== PHASE 1 ===== -->
+  <section class="reveal mb-10">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="phase-badge" style="border-color: rgba(239,68,68,0.45); background: rgba(239,68,68,0.1); color: #fca5a5;">
+        <span>I</span>
+        <span class="lang-cn">首轮</span>
+        <span class="lang-en hidden">Phase 1</span>
+      </div>
+      <h2 class="font-display font-bold text-xl">
+        <span class="lang-cn">合规过滤器</span>
+        <span class="lang-en hidden">The Compliance Filter</span>
+      </h2>
+    </div>
+
+    <div class="glass-card p-5 mb-5" style="border-left: 3px solid var(--red);">
+      <p class="text-sm font-semibold mb-1" style="color: var(--red);">
+        <span class="lang-cn">⚑ 原则</span>
+        <span class="lang-en hidden">⚑ Principle</span>
+      </p>
+      <p class="text-sm lang-cn" style="color: var(--text-secondary);">零容忍红线审查。凡存在合规疑虑的内容，无论自然流量多好，<strong style="color: var(--text-primary);">严禁进入 Boost 序列</strong>。</p>
+      <p class="text-sm lang-en hidden" style="color: var(--text-secondary);">Zero-tolerance for "Redline" violations. Any content with compliance risks, regardless of its organic performance, is <strong style="color: var(--text-primary);">strictly prohibited from the Boost sequence</strong>.</p>
+    </div>
+
+    <!-- 1.1 Copywriting Redlines Table -->
+    <div class="glass-card overflow-hidden mb-5">
+      <div class="px-5 py-4 border-b" style="border-color: var(--border);">
+        <h3 class="font-semibold text-sm" style="color: var(--text-accent);">
+          <span class="lang-cn">1.1 文案合规红线</span>
+          <span class="lang-en hidden">1.1 Copywriting Compliance Redlines</span>
+        </h3>
+        <p class="text-xs mt-1 lang-cn" style="color: var(--text-secondary);">针对画面、视频脚本及正文案</p>
+        <p class="text-xs mt-1 lang-en hidden" style="color: var(--text-secondary);">Applicable to on-screen text, video scripts, and captions</p>
+      </div>
+      <div class="table-scroll">
+        <table class="compliance-table">
+          <thead>
+            <tr>
+              <th class="lang-cn">风险类别</th>
+              <th class="lang-en hidden">Risk Category</th>
+              <th class="lang-cn">监测红线（严禁词）</th>
+              <th class="lang-en hidden">Monitoring Redlines</th>
+              <th class="lang-cn">AI 判定逻辑</th>
+              <th class="lang-en hidden">AI Detection Logic</th>
+              <th class="lang-cn">修改建议</th>
+              <th class="lang-en hidden">Suggested Alternatives</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="lang-cn">政治与选举</span>
+                <span class="lang-en hidden">Politics & Elections</span>
+              </td>
+              <td>
+                <span class="risk-pill">Elections</span>
+                <span class="risk-pill">Voting</span>
+                <span class="risk-pill">Politician's name</span>
+                <span class="risk-pill">Partisan bias</span>
+              </td>
+              <td>
+                <span class="lang-cn" style="color: var(--text-secondary);">识别社会议题倾向，自动拦截投放</span>
+                <span class="lang-en hidden" style="color: var(--text-secondary);">Identifies social issue tendencies; triggers automatic block</span>
+              </td>
+              <td>
+                <span class="alt-pill lang-cn">宏观趋势</span>
+                <span class="alt-pill lang-cn">经济周期</span>
+                <span class="alt-pill lang-cn">市场前景</span>
+                <span class="alt-pill lang-en hidden">Macro trends</span>
+                <span class="alt-pill lang-en hidden">Economic cycles</span>
+                <span class="alt-pill lang-en hidden">Market outlook</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="lang-cn">虚假承诺</span>
+                <span class="lang-en hidden">False Promises</span>
+              </td>
+              <td>
+                <span class="risk-pill">Guaranteed</span>
+                <span class="risk-pill">100% Win</span>
+                <span class="risk-pill">Easy Money</span>
+                <span class="risk-pill">Get rich fast</span>
+                <span class="risk-pill">Double your money</span>
+                <span class="risk-pill">Last chance</span>
+                <span class="risk-pill">Act now</span>
+              </td>
+              <td>
+                <span class="lang-cn" style="color: var(--text-secondary);">识别商业欺诈意图，判定为误导用户</span>
+                <span class="lang-en hidden" style="color: var(--text-secondary);">Detects intent of commercial fraud; flagged as misleading users</span>
+              </td>
+              <td>
+                <span class="alt-pill lang-cn">分析策略</span>
+                <span class="alt-pill lang-cn">资产多元化</span>
+                <span class="alt-pill lang-cn">长期规划</span>
+                <span class="alt-pill lang-en hidden">Analytical strategies</span>
+                <span class="alt-pill lang-en hidden">Asset diversification</span>
+                <span class="alt-pill lang-en hidden">Long-term planning</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="lang-cn">财务焦虑</span>
+                <span class="lang-en hidden">Financial Anxiety</span>
+              </td>
+              <td>
+                <span class="risk-pill">Are you in debt?</span>
+                <span class="risk-pill">Tired of being broke?</span>
+              </td>
+              <td>
+                <span class="lang-cn" style="color: var(--text-secondary);">判定为侵犯用户隐私，甚至冒犯性营销</span>
+                <span class="lang-en hidden" style="color: var(--text-secondary);">Flagged as invasion of user privacy or offensive marketing</span>
+              </td>
+              <td>
+                <span class="alt-pill lang-cn">优化理财框架</span>
+                <span class="alt-pill lang-cn">预算管理建议</span>
+                <span class="alt-pill lang-en hidden">Optimal financial frameworks</span>
+                <span class="alt-pill lang-en hidden">Budget management advice</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="lang-cn">夸张效果</span>
+                <span class="lang-en hidden">Exaggerated Effects</span>
+              </td>
+              <td>
+                <span class="risk-pill">Changes everything</span>
+                <span class="risk-pill">Life-changing</span>
+                <span class="risk-pill">Accelerate</span>
+              </td>
+              <td>
+                <span class="lang-cn" style="color: var(--text-secondary);">判定为夸大其词，诱导点击</span>
+                <span class="lang-en hidden" style="color: var(--text-secondary);">Flagged as hyperbole; categorized as Clickbait</span>
+              </td>
+              <td>
+                <span class="alt-pill lang-cn">更深入了解</span>
+                <span class="alt-pill lang-cn">完善配置</span>
+                <span class="alt-pill lang-en hidden">Gain deeper insights</span>
+                <span class="alt-pill lang-en hidden">Optimize configurations</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="lang-cn">⚠ 风险规避缺失</span>
+                <span class="lang-en hidden">⚠ Risk Evasion</span>
+              </td>
+              <td style="color: var(--red);">
+                <span class="lang-cn">缺失风险提示</span>
+                <span class="lang-en hidden">Missing Risk Disclaimers</span>
+              </td>
+              <td>
+                <span class="lang-cn" style="color: var(--text-secondary);">AI 未检测到法定风险告知信息</span>
+                <span class="lang-en hidden" style="color: var(--text-secondary);">AI fails to detect mandatory statutory risk disclosures</span>
+              </td>
+              <td>
+                <span style="display:inline-block; background: rgba(245,158,11,0.15); border: 1px solid rgba(245,158,11,0.4); color: #fcd34d; padding: 2px 8px; border-radius: 4px; font-size: 0.72rem;">
+                  <span class="lang-cn">强制加入：风险提示</span>
+                  <span class="lang-en hidden">Mandatory: Risk Warning</span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 1.2 Visual Redlines -->
+    <div class="glass-card p-6 mb-5">
+      <h3 class="font-semibold text-sm mb-4" style="color: var(--text-accent);">
+        <span class="lang-cn">1.2 视觉合规红线</span>
+        <span class="lang-en hidden">1.2 Visual Compliance Redlines</span>
+      </h3>
+      <p class="text-xs mb-4 lang-cn" style="color: var(--text-secondary);">AI 图像识别自动拦截逻辑</p>
+      <p class="text-xs mb-4 lang-en hidden" style="color: var(--text-secondary);">AI image recognition automatic interception logic</p>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="redline-item">
+          <p class="text-sm font-semibold mb-1" style="color: #fca5a5;">
+            <span class="lang-cn">财富暗示</span>
+            <span class="lang-en hidden">Wealth Implications</span>
+          </p>
+          <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">严禁成叠现金、炫耀式豪车、金条或夸张收益百分比图表</p>
+          <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">Strictly prohibit stacked cash, flamboyant luxury cars, gold bars, or exaggerated profit charts</p>
+        </div>
+        <div class="redline-item">
+          <p class="text-sm font-semibold mb-1" style="color: #fca5a5;">
+            <span class="lang-cn">误导性按钮</span>
+            <span class="lang-en hidden">Misleading Buttons</span>
+          </p>
+          <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">不得包含虚假的"点击进入"、"立即开户"等静态按钮伪装</p>
+          <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">Must not include fake "Click Here," "Open Account Now," or other static button disguises</p>
+        </div>
+        <div style="border-left: 3px solid var(--gold); padding-left: 14px;">
+          <p class="text-sm font-semibold mb-1" style="color: #fcd34d;">
+            <span class="lang-cn">合规要求</span>
+            <span class="lang-en hidden">Compliance Requirements</span>
+          </p>
+          <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">视频或图文<strong style="color: var(--text-primary);">第一屏</strong>必须包含清晰可辨识的 Risk Warning 风险提示</p>
+          <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">The <strong style="color: var(--text-primary);">first frame</strong> of a video or image post must contain a clear and legible Risk Warning</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1.3 Landing Page -->
+    <div class="glass-card p-6">
+      <h3 class="font-semibold text-sm mb-4" style="color: var(--text-accent);">
+        <span class="lang-cn">1.3 落地页监测红线</span>
+        <span class="lang-en hidden">1.3 Landing Page Monitoring Redlines</span>
+      </h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="redline-item">
+          <p class="text-sm font-semibold mb-1" style="color: #fca5a5;">
+            <span class="lang-cn">一致性审查</span>
+            <span class="lang-en hidden">Consistency Audit</span>
+          </p>
+          <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">Boost 帖子链接跳转的页面内容必须与帖子宣传点 <strong style="color: var(--text-primary);">100% 吻合</strong></p>
+          <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">The linked page content must be <strong style="color: var(--text-primary);">100% consistent</strong> with the post's claims</p>
+        </div>
+        <div class="redline-item">
+          <p class="text-sm font-semibold mb-1" style="color: #fca5a5;">
+            <span class="lang-cn">连带责任</span>
+            <span class="lang-en hidden">Joint Liability</span>
+          </p>
+          <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">若落地页含敏感词，Meta 将追溯并封禁上游 Boost 帖子，甚至整个广告账户</p>
+          <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">If the landing page contains sensitive terms, Meta will retroactively ban the upstream Boosted post or even the entire Ad Account</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-animated mb-10"></div>
+
+  <!-- ===== PHASE 2 ===== -->
+  <section class="reveal mb-10">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="phase-badge" style="border-color: rgba(99,144,255,0.45); background: rgba(59,130,246,0.1); color: #93c5fd;">
+        <span>II</span>
+        <span class="lang-cn">次轮</span>
+        <span class="lang-en hidden">Phase 2</span>
+      </div>
+      <h2 class="font-display font-bold text-xl">
+        <span class="lang-cn">内容匹配评估</span>
+        <span class="lang-en hidden">Content Matching Assessment</span>
+      </h2>
+    </div>
+
+    <div class="glass-card p-5 mb-5" style="border-left: 3px solid var(--accent-blue);">
+      <p class="text-sm font-semibold mb-1" style="color: var(--text-accent);">
+        <span class="lang-cn">⚑ 原则</span>
+        <span class="lang-en hidden">⚑ Principle</span>
+      </p>
+      <p class="text-sm lang-cn" style="color: var(--text-secondary);">从用户视角评估"关注动机"。好的 Boost 帖子应是高质量的<strong style="color: var(--text-primary);">"内容钩子"</strong>，而非硬广。</p>
+      <p class="text-sm lang-en hidden" style="color: var(--text-secondary);">Evaluate "Motivation to Follow" from the user's perspective. High-quality Boosted posts should act as <strong style="color: var(--text-primary);">"Content Hooks"</strong> rather than hard advertisements.</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-4">
+
+      <div class="glass-card p-5">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style="background: rgba(59,130,246,0.15); color: #7dd3fc; border: 1px solid rgba(59,130,246,0.25);">1</div>
+          <div>
+            <h4 class="text-sm font-semibold mb-2">
+              <span class="lang-cn">形式评估：非教学化</span>
+              <span class="lang-en hidden">Format Evaluation</span>
+            </h4>
+            <div class="greenline-item">
+              <p class="text-xs font-semibold mb-1 lang-cn" style="color: #86efac;">筛选标准</p>
+              <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #86efac;">Screening Standard</p>
+              <p class="text-xs lang-cn" style="color: var(--text-secondary);">避开纯粹信息堆砌，选择具备<strong style="color: var(--text-primary);">叙事性</strong>的内容</p>
+              <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">Avoid pure information dumping; select content with a <strong style="color: var(--text-primary);">Narrative</strong> structure</p>
+            </div>
+            <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">好的 Boost 帖子应该是一颗"钩子"。内容过于百科全书式，用户往往直接划走。</p>
+            <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">A good Boosted post should be a "Hook." If content is too encyclopedic, users tend to swipe away without following.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card p-5">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style="background: rgba(59,130,246,0.15); color: #7dd3fc; border: 1px solid rgba(59,130,246,0.25);">2</div>
+          <div>
+            <h4 class="text-sm font-semibold mb-2">
+              <span class="lang-cn">心理博弈：痛点触达</span>
+              <span class="lang-en hidden">Psychological Maneuvering</span>
+            </h4>
+            <div class="greenline-item">
+              <p class="text-xs font-semibold mb-1 lang-cn" style="color: #86efac;">筛选标准</p>
+              <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #86efac;">Screening Standard</p>
+              <p class="text-xs lang-cn" style="color: var(--text-secondary);">封面标题是否直击用户的<strong style="color: var(--text-primary);">"心理账户"</strong>？</p>
+              <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">Does the headline directly hit the user's <strong style="color: var(--text-primary);">"Psychological Account"</strong>?</p>
+            </div>
+            <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">用户关注的理由不应是"学到了知识"，而是<strong style="color: var(--text-primary);">"找到了共鸣"</strong>。</p>
+            <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">The reason a user follows should not be "learned a fact," but <strong style="color: var(--text-primary);">"found resonance."</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card p-5">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style="background: rgba(59,130,246,0.15); color: #7dd3fc; border: 1px solid rgba(59,130,246,0.25);">3</div>
+          <div>
+            <h4 class="text-sm font-semibold mb-2">
+              <span class="lang-cn">语态判定：对话 vs 教导</span>
+              <span class="lang-en hidden">Tone: Dialogue vs. Instruction</span>
+            </h4>
+            <div class="greenline-item">
+              <p class="text-xs font-semibold mb-1 lang-cn" style="color: #86efac;">关键数据</p>
+              <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #86efac;">Key Data</p>
+              <p class="text-xs lang-cn" style="color: var(--text-secondary);">"分享视角"完播率和关注转化率通常比"教学视角"高出</p>
+              <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">"Sharing Perspective" typically sees higher completion and follow-conversion rates vs "Instructional Perspective"</p>
+              <span class="font-display font-bold text-xl" style="color: var(--green);">+40%</span>
+            </div>
+            <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">优先选择更像在<strong style="color: var(--text-primary);">咖啡馆交流</strong>，而非在讲台上授课的内容。</p>
+            <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">Prioritize content that feels like a <strong style="color: var(--text-primary);">cafe chat</strong> rather than a lecture from a podium.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card p-5">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0" style="background: rgba(59,130,246,0.15); color: #7dd3fc; border: 1px solid rgba(59,130,246,0.25);">4</div>
+          <div>
+            <h4 class="text-sm font-semibold mb-2">
+              <span class="lang-cn">社交传播：互动深度</span>
+              <span class="lang-en hidden">Social Distribution & Engagement</span>
+            </h4>
+            <div class="greenline-item">
+              <p class="text-xs font-semibold mb-1 lang-cn" style="color: #86efac;">筛选标准</p>
+              <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #86efac;">Screening Standard</p>
+              <p class="text-xs lang-cn" style="color: var(--text-secondary);">重点查看<strong style="color: var(--text-primary);">转发量（Shares）</strong>和<strong style="color: var(--text-primary);">长评论率</strong></p>
+              <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">Focus on <strong style="color: var(--text-primary);">Shares</strong> and <strong style="color: var(--text-primary);">Long-form Comment Rate</strong></p>
+            </div>
+            <p class="text-xs leading-relaxed lang-cn" style="color: var(--text-secondary);">具备互动逻辑的内容（如："你的预算规则是什么？"）在 Boost 后更容易触达活跃人群。</p>
+            <p class="text-xs leading-relaxed lang-en hidden" style="color: var(--text-secondary);">Content with interactive logic (e.g., "What is your budgeting rule?") is more likely to reach active audiences once Boosted.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider-animated mb-10"></div>
+
+  <!-- ===== PHASE 3 ===== -->
+  <section class="reveal mb-10">
+    <div class="flex items-center gap-3 mb-6">
+      <div class="phase-badge" style="border-color: rgba(34,197,94,0.45); background: rgba(34,197,94,0.08); color: #86efac;">
+        <span>III</span>
+        <span class="lang-cn">末轮</span>
+        <span class="lang-en hidden">Phase 3</span>
+      </div>
+      <h2 class="font-display font-bold text-xl">
+        <span class="lang-cn">潜力验证</span>
+        <span class="lang-en hidden">Potential Verification</span>
+      </h2>
+    </div>
+
+    <div class="glass-card p-5 mb-6" style="border-left: 3px solid var(--green);">
+      <p class="text-sm font-semibold mb-1" style="color: var(--green);">⚑ 原则</p>
+      <p class="text-sm lang-cn" style="color: var(--text-secondary);">通过<strong style="color: var(--text-primary);">小步快跑</strong>的数据实测，筛选真正的"高性价比资产"。</p>
+      <p class="text-sm lang-en hidden" style="color: var(--text-secondary);">Screen for true <strong style="color: var(--text-primary);">"High-Value Assets"</strong> through fast-paced, small-scale data testing.</p>
+    </div>
+
+    <!-- Stage pipeline -->
+    <div class="relative">
+      <!-- Connector line -->
+      <div class="absolute left-6 top-12 bottom-12 w-0.5 md:hidden" style="background: linear-gradient(to bottom, rgba(99,144,255,0.3), rgba(34,197,94,0.3));"></div>
+
+      <!-- Stage 1 -->
+      <div class="glass-card p-5 mb-4 reveal">
+        <div class="flex items-start gap-4">
+          <div class="stage-node" style="background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.4); color: #7dd3fc;">S1</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap mb-2">
+              <h4 class="text-sm font-semibold">
+                <span class="lang-cn">Stage 1：自然筛选观察期</span>
+                <span class="lang-en hidden">Stage 1: Organic Screening</span>
+              </h4>
+              <span class="font-mono text-xs px-2 py-0.5 rounded" style="background: rgba(59,130,246,0.1); color: #7dd3fc;">24–48 hrs</span>
+            </div>
+            <div class="greenline-item">
+              <p class="text-xs font-semibold mb-1 lang-cn" style="color: #86efac;">判定标准</p>
+              <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #86efac;">Decision Criterion</p>
+              <p class="text-xs lang-cn" style="color: var(--text-secondary);">自然流量下的"关注/浏览比"高于账号平均值 <strong style="color: var(--green);">20%</strong> 以上</p>
+              <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">The "Follow/Reach Ratio" under organic traffic is <strong style="color: var(--green);">20%</strong> higher than the account average</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2 -->
+      <div class="glass-card p-5 mb-4 reveal">
+        <div class="flex items-start gap-4">
+          <div class="stage-node" style="background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.4); color: #fcd34d;">S2</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap mb-2">
+              <h4 class="text-sm font-semibold">
+                <span class="lang-cn">Stage 2：灰度测试</span>
+                <span class="lang-en hidden">Stage 2: Gray-box Testing</span>
+              </h4>
+              <span class="font-mono text-xs px-2 py-0.5 rounded" style="background: rgba(245,158,11,0.1); color: #fcd34d;">$10–$20/day · 48hrs</span>
+            </div>
+            <p class="text-xs mb-4 lang-cn" style="color: var(--text-secondary);">核心指标：CPF（Cost Per Follower）</p>
+            <p class="text-xs mb-4 lang-en hidden" style="color: var(--text-secondary);">Core Metric: CPF (Cost Per Follower)</p>
+
+            <!-- CPF Meter -->
+            <div class="space-y-3">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-mono" style="color: #86efac;">CPF &lt; $0.5</span>
+                  <span class="text-xs lang-cn" style="color: var(--green);">极优资产，准备放量</span>
+                  <span class="text-xs lang-en hidden" style="color: var(--green);">Premium — Scale immediately</span>
+                </div>
+                <div class="rounded-full overflow-hidden" style="background: rgba(255,255,255,0.06); height: 8px;">
+                  <div class="cpf-bar" style="width: 30%; background: linear-gradient(90deg, #22c55e, #4ade80);"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-mono" style="color: #fcd34d;">$0.5 &lt; CPF &lt; $0.8</span>
+                  <span class="text-xs lang-cn" style="color: var(--gold);">优秀资产，微调后放量</span>
+                  <span class="text-xs lang-en hidden" style="color: var(--gold);">Quality — Scale after optimization</span>
+                </div>
+                <div class="rounded-full overflow-hidden" style="background: rgba(255,255,255,0.06); height: 8px;">
+                  <div class="cpf-bar" style="width: 60%; background: linear-gradient(90deg, #f59e0b, #fbbf24);"></div>
+                </div>
+              </div>
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <span class="text-xs font-mono" style="color: #fca5a5;">CPF &gt; $1.0</span>
+                  <span class="text-xs lang-cn" style="color: var(--red);">成本过高，分析或止损</span>
+                  <span class="text-xs lang-en hidden" style="color: var(--red);">High cost — Analyze or stop spend</span>
+                </div>
+                <div class="rounded-full overflow-hidden" style="background: rgba(255,255,255,0.06); height: 8px;">
+                  <div class="cpf-bar" style="width: 95%; background: linear-gradient(90deg, #ef4444, #f87171);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3 -->
+      <div class="glass-card p-5 reveal">
+        <div class="flex items-start gap-4">
+          <div class="stage-node" style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.4); color: #86efac;">S3</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap mb-2">
+              <h4 class="text-sm font-semibold">
+                <span class="lang-cn">Stage 3：规模放量</span>
+                <span class="lang-en hidden">Stage 3: Scale-up Phase</span>
+              </h4>
+              <span class="font-mono text-xs px-2 py-0.5 rounded" style="background: rgba(34,197,94,0.1); color: #86efac;">$20+/day</span>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="greenline-item">
+                <p class="text-xs font-semibold mb-1 lang-cn" style="color: #86efac;">执行策略</p>
+                <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #86efac;">Execution Strategy</p>
+                <p class="text-xs lang-cn" style="color: var(--text-secondary);">只有处于<strong style="color: var(--text-primary);">"低风险、高增长"</strong>象限的帖子，才允许进入持续投放计划</p>
+                <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">Only posts in the <strong style="color: var(--text-primary);">"Low Risk, High Growth"</strong> quadrant are permitted into the continuous spend plan</p>
+              </div>
+              <div class="redline-item">
+                <p class="text-xs font-semibold mb-1 lang-cn" style="color: #fca5a5;">动态预警</p>
+                <p class="text-xs font-semibold mb-1 lang-en hidden" style="color: #fca5a5;">Dynamic Alert</p>
+                <p class="text-xs lang-cn" style="color: var(--text-secondary);">每 3 天复核成本。若 CPF 连续 48 小时上涨 <strong style="color: var(--red);">30%</strong> 以上，即刻降低预算或更换素材</p>
+                <p class="text-xs lang-en hidden" style="color: var(--text-secondary);">Review costs every 3 days. If CPF rises over <strong style="color: var(--red);">30%</strong> for 48 consecutive hours, reduce budget or rotate creatives</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider-animated mb-10"></div>
+
+  <!-- ===== SUMMARY ===== -->
+  <section class="reveal mb-16">
+    <div class="glass-card p-8 text-center" style="background: linear-gradient(135deg, rgba(15,23,50,0.9), rgba(20,32,65,0.9)); border-color: rgba(99,144,255,0.25);">
+      <div class="w-12 h-12 rounded-full mx-auto mb-4 flex items-center justify-center" style="background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(34,197,94,0.2)); border: 1px solid rgba(99,144,255,0.3);">
+        <span class="text-lg">◈</span>
+      </div>
+      <h2 class="font-display font-bold text-xl mb-4 gradient-text">
+        <span class="lang-cn">总结</span>
+        <span class="lang-en hidden">Summary</span>
+      </h2>
+      <p class="text-base leading-relaxed max-w-2xl mx-auto lang-cn" style="color: var(--text-secondary);">
+        在 2026 年的 Meta 环境下，<strong style="color: var(--text-primary);">合规是基础底线</strong>，<strong style="color: var(--green);">共鸣才是生产力</strong>。表现最好的 Boosted posts，往往是那些<strong style="color: var(--text-accent);">看起来最不像广告</strong>、却更像<strong style="color: var(--text-primary);">专业洞察</strong>的内容。
+      </p>
+      <p class="text-base leading-relaxed max-w-2xl mx-auto lang-en hidden" style="color: var(--text-secondary);">
+        In the 2026 Meta environment, <strong style="color: var(--text-primary);">compliance is the baseline</strong> and <strong style="color: var(--green);">resonance is the productivity</strong>. The best Boosted posts are those that <strong style="color: var(--text-accent);">appear the least like ads</strong> and the most like <strong style="color: var(--text-primary);">professional insights</strong>.
+      </p>
+      <div class="flex items-center justify-center gap-6 mt-6 flex-wrap">
+        <div class="text-center">
+          <div class="font-display font-bold text-2xl" style="color: var(--red);">0</div>
+          <div class="text-xs font-mono mt-1 lang-cn" style="color: var(--text-secondary);">红线容忍度</div>
+          <div class="text-xs font-mono mt-1 lang-en hidden" style="color: var(--text-secondary);">Redline Tolerance</div>
+        </div>
+        <div style="width: 1px; height: 40px; background: var(--border);"></div>
+        <div class="text-center">
+          <div class="font-display font-bold text-2xl" style="color: var(--green);">3</div>
+          <div class="text-xs font-mono mt-1 lang-cn" style="color: var(--text-secondary);">执行阶段</div>
+          <div class="text-xs font-mono mt-1 lang-en hidden" style="color: var(--text-secondary);">Execution Phases</div>
+        </div>
+        <div style="width: 1px; height: 40px; background: var(--border);"></div>
+        <div class="text-center">
+          <div class="font-display font-bold text-2xl" style="color: var(--text-accent);">$0.5</div>
+          <div class="text-xs font-mono mt-1 lang-cn" style="color: var(--text-secondary);">极优 CPF 阈值</div>
+          <div class="text-xs font-mono mt-1 lang-en hidden" style="color: var(--text-secondary);">Premium CPF Threshold</div>
+        </div>
+        <div style="width: 1px; height: 40px; background: var(--border);"></div>
+        <div class="text-center">
+          <div class="font-display font-bold text-2xl" style="color: var(--green);">+40%</div>
+          <div class="text-xs font-mono mt-1 lang-cn" style="color: var(--text-secondary);">对话式内容转化提升</div>
+          <div class="text-xs font-mono mt-1 lang-en hidden" style="color: var(--text-secondary);">Conversational Conversion Lift</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center pb-8">
+    <div class="divider-animated mb-6"></div>
+    <p class="font-mono text-xs" style="color: rgba(148,163,184,0.4); letter-spacing: 0.12em;">ZERO MARKETS · BOOST COMPLIANCE STANDARDS · 2026 · INTERNAL USE ONLY</p>
+  </footer>
+
+</div>
+</div>
+
+<script>
+  // Language switching
+  let currentLang = 'cn';
+
+  function setLang(lang) {
+    currentLang = lang;
+
+    // Toggle button states
+    document.getElementById('btn-cn').classList.toggle('active', lang === 'cn');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // Fade all language elements
+    const cnEls = document.querySelectorAll('.lang-cn');
+    const enEls = document.querySelectorAll('.lang-en');
+
+    if (lang === 'cn') {
+      cnEls.forEach(el => {
+        el.classList.remove('hidden');
+        el.style.opacity = '0';
+        setTimeout(() => { el.style.transition = 'opacity 0.35s ease'; el.style.opacity = '1'; }, 10);
+      });
+      enEls.forEach(el => {
+        el.style.opacity = '0';
+        setTimeout(() => { el.classList.add('hidden'); }, 350);
+      });
+    } else {
+      enEls.forEach(el => {
+        el.classList.remove('hidden');
+        el.style.opacity = '0';
+        setTimeout(() => { el.style.transition = 'opacity 0.35s ease'; el.style.opacity = '1'; }, 10);
+      });
+      cnEls.forEach(el => {
+        el.style.opacity = '0';
+        setTimeout(() => { el.classList.add('hidden'); }, 350);
+      });
+    }
+  }
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Animate CPF bars on scroll
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const bars = entry.target.querySelectorAll('.cpf-bar');
+        bars.forEach(bar => {
+          const targetWidth = bar.style.width;
+          bar.style.width = '0%';
+          setTimeout(() => { bar.style.width = targetWidth; }, 300);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.glass-card').forEach(card => {
+    if (card.querySelector('.cpf-bar')) barObserver.observe(card);
+  });
+</script>
+</body>
+</html>
